@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="corel.css">
+</head>
+<body>
+<div id="whole">
+<div>
+<textarea id="typeIn"></textarea><br>
+<input type="text" name="" list="fsize" id="fs" placeholder="Font size">
+	 <datalist id="fsize">
+	 	<option>8</option>
+	 	<option>9</option>
+	 	<option>10</option>
+	 	<option>11</option>
+	 	<option>13</option>
+	 	<option>14</option>
+	 	<option>16</option>
+	 	<option>18</option>
+	 	<option>20</option>
+	 	<option>24</option>
+	 	<option>30</option>
+	 	<option>36</option>
+	 	<option>38</option>
+	 	<option>48</option>
+	 	<option>60</option>
+	 	<option>70</option>
+	 </datalist><br><br>
+	 <input type="text" name="" list="ffam" id="ff" placeholder="Font Family">
+	 <datalist id="ffam">
+	 	<option>Arial</option>
+	 	<option>Arial Black</option>
+	 	<option>Bahnschrift</option>
+	 	<option>Bahnschrift Condensed</option>
+	 	<option>Verdana</option>
+	 	<option>Calibri</option>
+	 	<option>Calibri Light</option>
+	 	<option>Cambria</option>
+	 	<option>Cambria Math</option>
+	 	<option>Comic Sans MS</option>
+	 	<option>Consolas</option>
+	 	<option>Candara</option>
+	 	<option>Courier</option>
+	 	<option>Fixedsys</option>
+	 	<option>FontAwesome</option>
+	 	<option>Impact</option>
+</div>
+<div id="canv"><canvas id="myCanvas" width="700" height="600" style="border:solid black;"  onmousemove="position()" ></canvas></div>
+
+<div id="all1">
+<button onclick="dline()" class="butline"><p>LINE</p></button><br>
+<button onclick="drect()" class="butrect"><p id="prect">RECTANGLE</p></button><br>
+<button onclick="dcirc()" class="butcirc"><p>CIRCLE</p></button>
+</div>
+<div id="all2">
+<button onclick="dtext()" class="buttext"><p>TEXT</p></button><br>
+<button onclick="wtdo('stroke')" class="butstroke"><p>STROKE</p></button><br>
+<button onclick="wtdo('fill')" class="butfill"><p>FILL</p></button>
+</div>
+<div id="all3">
+<b>COLOR</b>
+<input type="color" name="" id="color" class="butcol"><br>
+<button onclick="erase()" class="buterase"><p>ERASER</p></button><br>
+<button onclick="wtdo2('clear')" class="butclear"><p>CLEAR</p></button>
+<button onclick="darc()">arc</button>
+</div>
+<div id="pos"><input type="text" name="" id="mp"></div>
+</div>
+<script type="text/javascript">
+	
+	 var canvas = document.getElementById('myCanvas');
+	 var dx = 0;
+	 var dy = 0; 
+	 var ux = 0; 
+	 var uy = 0;
+	 var hey;
+	 var pen = canvas.getContext('2d');
+
+	 function position(){
+	 	mp.value = "X" + (event.x-471) + "||" + "Y" + (event.y-20);
+	 	
+	 }
+	 function wtdo2(){
+	 		pen.clearRect(0,0,700,600);
+	 }
+	 function wtdo(p){
+	 	 hey = p; 
+	 }
+
+
+	 function dline(){
+	 	canvas.onmousedown=function down(){
+	 		dx = event.x -471;
+	 		dy = event.y -20;
+	 		pen.beginPath();
+	 		pen.moveTo(dx,dy);
+	 	}
+	 	canvas.onmouseup=function up(){
+	 		ux = event.x -471;
+	 		uy = event.y -20;
+
+	 		pen.strokeStyle=color.value;
+	 		pen.lineTo(ux,uy);
+	 		pen.stroke();
+	 		pen.closePath(); 
+		 }
+	}
+	 function drect(){
+	 	canvas.onmousedown=function down(){
+	 		dx = event.x -471;
+	 		dy = event.y -20;
+	 		
+	 	}
+	 	canvas.onmouseup=function up(){
+	 		
+	 		
+	 		ux = event.x -471;
+	 		uy = event.y -20;
+	 		
+	 		if (hey == 'stroke') {
+	 			pen.beginPath();
+	 			pen.strokeStyle=color.value;
+	 			pen.rect(dx,dy,ux-dx,uy-dy);
+	 			pen.stroke();
+	 			pen.closePath(); 
+	 		}else if (hey == 'fill') {
+	 			pen.beginPath();
+	 			pen.fillStyle=color.value;
+	 			pen.rect(dx,dy,ux-dx,uy-dy);
+	 			pen.fill();
+	 		}
+	 }
+	}
+	 function dcirc(){
+	 	canvas.onmousedown=function down(){
+	 		dx = event.x -471;
+	 		dy = event.y -20;
+	 		pen.moveTo(dx,dy);
+	 		
+	 	}
+	 	canvas.onmouseup=function up(){
+	 		ux = event.x -471;
+	 		uy = event.y -20;
+	 		pen.beginPath();
+	 		if (ux>dx) {
+	 			r = ux-dx;
+	 		}
+	 		if (hey == 'stroke') {
+	 			pen.beginPath();
+	 			pen.strokeStyle=color.value;
+	 			pen.arc(dx,dy,r,0,2*Math.PI);
+	 			pen.stroke();
+	 			pen.closePath();
+	 		}else if (hey == 'fill') {
+	 			pen.beginPath();
+	 			pen.fillStyle=color.value;
+	 			pen.arc(dx,dy,r,0,2*Math.PI);
+	 			pen.fill();	}
+	 		
+	 	}
+	 }
+	  function dtext(){
+	 	canvas.onclick=function down(){
+	 		dx = event.x -471;
+	 		dy = event.y -20;
+	 		if (hey == 'stroke') {
+	 			pen.font = fs.value + 'px ' + ff.value;
+	 			pen.strokeStyle=color.value;
+	 			pen.strokeText(document.getElementById('typeIn').value ,dx,dy);
+	 		}else if (hey == 'fill') {
+	 			pen.font = fs.value + 'px ' + ff.value;
+	 			pen.fillStyle=color.value;
+	 			pen.fillText(document.getElementById('typeIn').value ,dx,dy);	
+	 		}
+	 	
+	 	}
+
+	}
+	 function erase(){
+	 	canvas.onmousedown=function down(){
+	 		dx = event.x -471;
+	 		dy = event.y -20;
+	 		
+	 	}
+	 	canvas.onmouseup=function up(){
+	 		ux = event.x -471;
+	 		uy = event.y -20;
+
+	 	    pen.beginPath();
+	 		pen.clearRect(dx,dy,ux-dx,uy-dy);
+	 			
+	 		
+	 }
+	
+	 }
+	
+	
+
+
+</script>
+
+</body>
+</html>

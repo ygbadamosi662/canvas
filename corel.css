@@ -1,0 +1,95 @@
+#whole{
+	background-color: #D1DAE9;
+	padding: 10px;
+}
+#all1{
+	display: flex;
+	flex-direction: column;
+	margin-top: -500px;
+	/*background-color: blue;*/
+	width: 100px;
+	
+}
+#all2{
+	display: flex;
+	flex-direction: column;
+	margin-left: 120px;
+	margin-top: -285px;
+	/*background-color: red;*/
+	width: 100px;
+	
+}
+#all3{
+	display: flex;
+	flex-direction: column;
+	margin-left: 270px;
+	margin-top: -332px;
+	/*background-color: yellow;*/
+	width: 100px;
+	
+}
+#canv{
+	height: 605px;
+	width: 705px;
+	margin-left: 450px;
+	margin-top: -100px;
+	background-color: white;
+}
+.butline{
+	height: 100px;
+	width: 100px;
+	
+}
+.butrect{
+	height: 50px;
+	width: 100px;
+	
+}
+.butcirc{
+	height: 100px;
+	width: 100px;
+	border-radius: 50px;
+	
+}
+.buttext{
+	height: 100px;
+	width: 100px;
+	
+}
+.butstroke{
+	height: 100px;
+	width: 100px;
+	
+}
+.butfill{
+	height: 100px;
+	width: 100px;
+	
+}
+.butcol{
+	height: 50px;
+	width: 100px;
+	
+}
+.buterase{
+	height: 100px;
+	width: 100px;
+	
+}
+.butclear{
+	height: 100px;
+	width: 100px;
+	
+}
+#pos{
+	margin-left: 87%;
+	margin-top: 165px;
+}
+p{
+	font-family: Arial Black;
+	font-size: 20px;
+}
+#prect{
+	font-family: Arial Black;
+	font-size: 13px;
+}
